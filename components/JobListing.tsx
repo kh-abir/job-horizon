@@ -19,6 +19,7 @@ export default function JobListing() {
     location: undefined as string | undefined,
     jobType: [] as Array<"FULL_TIME" | "PART_TIME" | "REMOTE">,
     experience: undefined as "ENTRY" | "INTERMEDIATE" | "EXPERT" | undefined,
+    salary: undefined as number | undefined,
   });
 
   const trpcContext = trpc.useContext();
@@ -29,6 +30,7 @@ export default function JobListing() {
     location: filters.location || undefined,
     jobType: filters.jobType.length > 0 ? filters.jobType : undefined,
     experience: filters.experience || undefined,
+    salary: filters.salary || undefined,
   });
 
   const deleteMutation = trpc.jobs.delete.useMutation({
@@ -46,8 +48,6 @@ export default function JobListing() {
     }
   };
 
-  if (isLoading) return <Loading />;
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
       {/* ✅ Column 1: Sidebar */}
@@ -62,10 +62,10 @@ export default function JobListing() {
 
         {/* Job Listings */}
         <div className="space-y-4">
-          {jobs.length === 0 ? (
+          { isLoading ? (<Loading/>) : jobs.length === 0 ? (
             <p className="text-center text-gray-500">No jobs available.</p>
           ) : (
-            jobs.map((job) => (
+            jobs.map((job: any) => (
               <JobCard
                 key={job.id}
                 id={job.id}
@@ -83,7 +83,7 @@ export default function JobListing() {
         </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-center space-x-4 mt-6">
+        <div className="flex items-center justify-center space-x-4 py-6">
             <Button onClick={() => setPage((prev) => Math.max(prev - 1, 1))} disabled={page === 1}>
               Previous
             </Button>

@@ -1,11 +1,11 @@
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useUser } from "@clerk/nextjs";
 import { MoreVertical } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { useUser } from "@clerk/nextjs";
 
 interface JobCardProps {
   id: string;
@@ -19,6 +19,16 @@ interface JobCardProps {
   postedTime: string;
   onDelete: (id: string) => void;
 }
+const colors = [
+  "bg-cyan-100 text-cyan-700",
+    "bg-purple-100 text-purple-700",
+    "bg-green-100 text-green-700",
+    "bg-yellow-100 text-yellow-700",
+    "bg-pink-100 text-pink-700",
+    "bg-indigo-100 text-indigo-700",
+    "bg-teal-100 text-teal-700",
+    "bg-orange-100 text-orange-700",
+];
 
 export default function JobCard({
   id,
@@ -36,7 +46,7 @@ export default function JobCard({
   const isAdmin = user?.publicMetadata?.role === "admin"; 
 
   return (
-    <Card className="p-4 rounded-lg shadow-md border bg-white">
+    <Card className="p-4 rounded-lg shadow border bg-white">
       <CardHeader className="flex justify-between flex-row">
         <div className="flex items-center gap-3">
           <Image
@@ -76,13 +86,13 @@ export default function JobCard({
       </CardHeader>
 
       <CardContent className="mt-2">
-        <p className="text-sm text-gray-600">{description.substring(0, 120)}...</p>
+        <p className="text-sm text-gray-500">{description.substring(0, 120)}...</p>
       </CardContent>
 
       <CardFooter className="mt-4 flex justify-between items-center">
         <div className="flex gap-2">
           {skills.map((skill, index) => (
-            <Badge key={index} variant="outline" className="text-sm px-3 py-1">
+            <Badge key={index} variant="outline" className={`text-sm px-3 py-1 font-medium rounded-md text-white ${colors[index]}`}>
               {skill}
             </Badge>
           ))}

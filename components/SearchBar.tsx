@@ -18,18 +18,21 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   };
 
   return (
-    <div className="bg-gray-300 text-white p-6 rounded-lg shadow-md flex items-center justify-between">
-      
-      <form onSubmit={handleSubmit} className="w-full flex bg-white rounded-lg overflow-hidden shadow-md">
+    <div className="bg-primary text-white p-6 rounded-lg shadow">
+      <h2 className="text-xl font-semibold mb-4">Find your dream job</h2>
+      <p className="text-sm text-white/60 mb-4">
+        Search from thousands of job listings to find the perfect job for you.
+      </p>
+      <form onSubmit={handleSubmit} className="w-full flex rounded-lg overflow-hidden gap-2 ">
         <Input
           type="text"
           placeholder="Search your dream job here"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="p-3 flex-1 border-none focus:ring-0 text-gray-900"
+          className="p-3 flex-1 border-none focus-visible:ring-0 focus-visible:ring-offset-0 text-white bg-white/10 placeholder:text-white"
         />
-        <Button type="submit" className="bg-gray-500 hover:bg-gray-700 text-white flex items-center px-4">
-          <Search className="h-5 w-5 mr-2" />
+        <Button type="submit" className="bg-white hover:bg-white text-primary flex items-center px-4 font-bold">
+          <Search className="h-5 w-5" />
           Search Job
         </Button>
       </form>

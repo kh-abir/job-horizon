@@ -68,6 +68,7 @@ export const appRouter = t.router({
           location: z.string().optional(),
           jobType: z.array(z.enum(["FULL_TIME", "PART_TIME", "REMOTE"])).optional(), // ✅ Accept array
           experience: z.enum(["ENTRY", "INTERMEDIATE", "EXPERT"]).optional(),
+          salary: z.number().optional(),
         })
       )
       .query(async ({ ctx, input }) => {
