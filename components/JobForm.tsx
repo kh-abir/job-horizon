@@ -66,7 +66,7 @@ export default function JobForm({ jobId }: JobFormProps) {
         location: existingJob.location,
         type: existingJob.type,
         description: existingJob.description,
-        skills: existingJob.skills || [],
+        skills: existingJob.skills.join('\n'),
         responsibilities: existingJob.responsibilities.join('\n'),
         requirements: existingJob.requirements.join('\n'),
         salary: existingJob.salary || '',
@@ -80,7 +80,7 @@ export default function JobForm({ jobId }: JobFormProps) {
       ...data,
       responsibilities: data.responsibilities.split('\n'),
       requirements: data.requirements.split('\n'),
-      skills: data.skills.split('\n'),
+      skills: data.skills?.split('\n'),
     };
 
     if (jobId) {

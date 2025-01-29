@@ -7,36 +7,28 @@ import CountrySelect from "./CountrySelect";
 
 /** ✅ Job Type Enum & Array */
 enum JobType {
-    FULL_TIME = "FULL_TIME",
-    PART_TIME = "PART_TIME",
-    REMOTE = "REMOTE",
-}
+    FULL_TIME = 'FULL_TIME',
+    PART_TIME = 'PART_TIME',
+    REMOTE = 'REMOTE',
+    CONTRACT = 'CONTRACT'
+  }
 
 const jobTypes: JobType[] = Object.values(JobType);
-
-/** ✅ Experience Level Enum & Array */
-enum ExperienceLevel {
-    ENTRY = "ENTRY",
-    INTERMEDIATE = "INTERMEDIATE",
-    EXPERT = "EXPERT",
-}
-
-const experienceLevels: ExperienceLevel[] = Object.values(ExperienceLevel);
 
 /** ✅ Props Interface */
 interface JobFilterSidebarProps {
     filters: {
         location: string | undefined;
         jobType: JobType[];
-        experience: ExperienceLevel | undefined;
         salary: number | undefined;
+        postedDate: string | undefined;
     };
     setFilters: React.Dispatch<
         React.SetStateAction<{
             location: string | undefined;
             jobType: JobType[];
-            experience: ExperienceLevel | undefined;
             salary: number | undefined;
+            postedDate: string | undefined;
         }>
     >;
 }
@@ -49,14 +41,6 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
             jobType: prev.jobType.includes(type)
                 ? prev.jobType.filter((t) => t !== type)
                 : [...prev.jobType, type],
-        }));
-    };
-
-    /** ✅ Toggle Experience Level */
-    const toggleExperienceLevel = (level: ExperienceLevel) => {
-        setFilters((prev) => ({
-            ...prev,
-            experience: prev.experience === level ? undefined : level,
         }));
     };
 
@@ -91,8 +75,8 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
                         setFilters({
                             location: undefined,
                             jobType: [],
-                            experience: undefined,
                             salary: undefined,
+                            postedDate: undefined,
                         })
                     }
                 >
@@ -115,19 +99,6 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
                     <label key={type} className="flex items-center space-x-3 mb-2 text-muted-foreground text-sm">
                         <Checkbox checked={filters.jobType.includes(type)} onCheckedChange={() => toggleJobType(type)} />
                         <span>{type.toLowerCase()
-                            .replace(/_/g, " ")
-                            .replace(/\b\w/g, (char) => char.toUpperCase())}</span>
-                    </label>
-                ))}
-            </div>
-
-            {/* ✅ Experience Level Filter */}
-            <div className="mt-4">
-                <h3 className="font-bold mb-4">Experience Levels</h3>
-                {experienceLevels.map((level) => (
-                    <label key={level} className="flex items-center space-x-3 mb-2 text-muted-foreground text-sm">
-                        <Checkbox checked={filters.experience === level} onCheckedChange={() => toggleExperienceLevel(level)} />
-                        <span>{level.toLowerCase()
                             .replace(/_/g, " ")
                             .replace(/\b\w/g, (char) => char.toUpperCase())}</span>
                     </label>

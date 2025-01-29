@@ -10,6 +10,13 @@ import JobFilterSidebar from "@/components/JobFilterSidebar";
 import { Button } from "@/components/ui/button";
 import {ChevronLeft, ChevronRight} from "lucide-react";
 
+enum JobType {
+  FULL_TIME = 'FULL_TIME',
+  PART_TIME = 'PART_TIME',
+  REMOTE = 'REMOTE',
+  CONTRACT = 'CONTRACT'
+}
+
 export default function JobListing() {
   const { user } = useUser();
   const [page, setPage] = useState(1);
@@ -18,9 +25,9 @@ export default function JobListing() {
 
   const [filters, setFilters] = useState({
     location: undefined as string | undefined,
-    jobType: [] as Array<"FULL_TIME" | "PART_TIME" | "REMOTE">,
-    experience: undefined as "ENTRY" | "INTERMEDIATE" | "EXPERT" | undefined,
+    jobType: [] as JobType[],
     salary: undefined as number | undefined,
+    postedDate: undefined as string | undefined,
   });
 
   const trpcContext = trpc.useContext();
@@ -29,10 +36,9 @@ export default function JobListing() {
     limit,
     search,
     location: filters.location || undefined,
-    jobType: filters.jobType.length > 0 ? filters.jobType : undefined,
-    experience: filters.experience || undefined,
+    jobType: filters.jobType.length > 0 ? filters.jobType as JobType[] : undefined,
     salary: filters.salary || undefined,
-    postedDate: undefined,
+    postedDate: filters.postedDate || undefined,
   });
 
   const deleteMutation = trpc.jobs.delete.useMutation({

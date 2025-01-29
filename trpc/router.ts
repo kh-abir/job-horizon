@@ -51,7 +51,12 @@ const adminMiddleware = middleware(async ({ ctx, next }) => {
 
 // Extends "protectedProcedure" with admin check
 export const adminProcedure = protectedProcedure.use(adminMiddleware);
-
+enum JobType {
+  FULL_TIME = 'FULL_TIME',
+  PART_TIME = 'PART_TIME',
+  REMOTE = 'REMOTE',
+  CONTRACT = 'CONTRACT'
+}
 // ─────────────────────────────────────────────────────────────
 // 2. Main App Router
 // ─────────────────────────────────────────────────────────────
@@ -66,14 +71,14 @@ export const appRouter = t.router({
           limit: z.number().min(1).max(20).default(5),
           search: z.string().optional(),
           location: z.string().optional(),
-          jobType: z.array(z.enum(["FULL_TIME", "PART_TIME", "REMOTE"])).optional(), // ✅ Accept array
-          experience: z.enum(["ENTRY", "INTERMEDIATE", "EXPERT"]).optional(),
+          jobType: z.array(z.nativeEnum(JobType)).optional().optional(), // ✅ Accept array
           skills: z.array(z.string()).optional(),
           salary: z.number().optional(),
+          postedDate: z.string().optional(),
         })
       )
       .query(async ({ ctx, input }) => {
-        const { page, limit, search, location, jobType, experience, skills } = input;
+        const { page, limit, search, location, jobType, skills } = input;
         const skip = (page - 1) * limit;
 
         const whereFilter: any = {};
@@ -89,7 +94,6 @@ export const appRouter = t.router({
         if (jobType && jobType.length > 0) {
           whereFilter.type = { in: jobType }; // ✅ Allow multiple job types
         }
-        if (experience) whereFilter.experience = experience;
         if (skills && skills.length > 0) {
           whereFilter.skills = { hasSome: skills };
         }
@@ -174,10 +178,6 @@ export const appRouter = t.router({
         });
       }),
 
-
-    // In the future, you can add "update" or "delete" with adminProcedure as well
-    // update: adminProcedure
-    // delete: adminProcedure
   }),
 });
 
