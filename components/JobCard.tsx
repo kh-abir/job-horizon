@@ -57,7 +57,7 @@ export default function JobCard({
             className="rounded-lg"
           />
           <div>
-            <h2 className="text-lg font-semibold">{title}</h2>
+            <Link href={`/${id}`} className="text-lg font-semibold">{title}</Link>
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 mt-1">
               <span className="whitespace-nowrap">{location}</span>
               <span className="whitespace-nowrap">{salaryRange}</span>
