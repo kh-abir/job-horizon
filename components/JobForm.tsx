@@ -17,7 +17,7 @@ const jobSchema = z.object({
   company: z.string().min(2, 'Company name is required'),
   location: z.string().min(2, 'Location is required'),
   type: z.enum(['FULL_TIME', 'PART_TIME', 'REMOTE', 'CONTRACT']),
-  skills: z.array(z.string()).optional(),
+  skills: z.string().optional(),
   description: z.string().min(10, 'Description must be at least 10 characters'),
   responsibilities: z.string().min(5, 'Responsibilities required'),
   requirements: z.string().min(5, 'Requirements required'),

@@ -11,6 +11,7 @@ CREATE TABLE "Job" (
     "description" TEXT NOT NULL,
     "responsibilities" TEXT[],
     "requirements" TEXT[],
+    "skills" TEXT[],
     "salary" TEXT,
     "applicationUrl" TEXT,
     "postedDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
