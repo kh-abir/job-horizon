@@ -9,13 +9,7 @@ import SearchBar from "@/components/SearchBar";
 import JobFilterSidebar from "@/components/JobFilterSidebar";
 import { Button } from "@/components/ui/button";
 import {ChevronLeft, ChevronRight} from "lucide-react";
-
-enum JobType {
-  FULL_TIME = 'FULL_TIME',
-  PART_TIME = 'PART_TIME',
-  REMOTE = 'REMOTE',
-  CONTRACT = 'CONTRACT'
-}
+import { JobType } from '@/trpc/constants';
 
 export default function JobListing() {
   const { user } = useUser();

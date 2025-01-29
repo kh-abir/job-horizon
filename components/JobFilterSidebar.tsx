@@ -4,14 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
 import CountrySelect from "./CountrySelect";
-
-/** ✅ Job Type Enum & Array */
-enum JobType {
-    FULL_TIME = 'FULL_TIME',
-    PART_TIME = 'PART_TIME',
-    REMOTE = 'REMOTE',
-    CONTRACT = 'CONTRACT'
-  }
+import { JobType } from '@/trpc/constants';
 
 const jobTypes: JobType[] = Object.values(JobType);
 

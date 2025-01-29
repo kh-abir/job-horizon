@@ -2,7 +2,8 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { trpc } from "@/trpc/client";
-import JobDetails, { JobType } from "@/components/JobDetails";
+import JobDetails from "@/components/JobDetails";
+import { JobType } from '@/trpc/constants';
 import { Loader2 } from "lucide-react"; // shadcn recommended loader icon
 import { Button } from "@/components/ui/button";
 

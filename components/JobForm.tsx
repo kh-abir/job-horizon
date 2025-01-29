@@ -10,13 +10,14 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { JobType } from '@/trpc/constants';
 
 const jobSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(3, 'Title must be at least 3 characters'),
   company: z.string().min(2, 'Company name is required'),
   location: z.string().min(2, 'Location is required'),
-  type: z.enum(['FULL_TIME', 'PART_TIME', 'REMOTE', 'CONTRACT']),
+  type: z.nativeEnum(JobType), 
   skills: z.string().optional(),
   description: z.string().min(10, 'Description must be at least 10 characters'),
   responsibilities: z.string().min(5, 'Responsibilities required'),
@@ -64,7 +65,7 @@ export default function JobForm({ jobId }: JobFormProps) {
         title: existingJob.title,
         company: existingJob.company,
         location: existingJob.location,
-        type: existingJob.type,
+        type: existingJob.type as JobType,
         description: existingJob.description,
         skills: existingJob.skills.join('\n'),
         responsibilities: existingJob.responsibilities.join('\n'),
@@ -106,7 +107,7 @@ export default function JobForm({ jobId }: JobFormProps) {
         <Input placeholder="Location" {...register('location')} />
         {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
 
-        <Select onValueChange={(value) => setValue('type', value as 'FULL_TIME' | 'PART_TIME' | 'REMOTE' | 'CONTRACT')}>
+        <Select onValueChange={(value) => setValue('type', value as JobType)}>
           <SelectTrigger>
             <SelectValue placeholder="Select Job Type" />
           </SelectTrigger>
