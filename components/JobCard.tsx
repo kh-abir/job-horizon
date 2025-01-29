@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { MoreVertical } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { formatDistanceToNow } from "date-fns";
 
 interface JobCardProps {
   id: string;
@@ -16,19 +17,9 @@ interface JobCardProps {
   applicants: number;
   description: string;
   skills: string[];
-  postedTime: string;
+  postedDate: string;
   onDelete: (id: string) => void;
 }
-const colors = [
-  "bg-cyan-100 text-cyan-700",
-    "bg-purple-100 text-purple-700",
-    "bg-green-100 text-green-700",
-    "bg-yellow-100 text-yellow-700",
-    "bg-pink-100 text-pink-700",
-    "bg-indigo-100 text-indigo-700",
-    "bg-teal-100 text-teal-700",
-    "bg-orange-100 text-orange-700",
-];
 
 export default function JobCard({
   id,
@@ -39,14 +30,14 @@ export default function JobCard({
   applicants,
   description,
   skills,
-  postedTime,
+  postedDate,
   onDelete,
 }: JobCardProps) {
   const { user } = useUser();
-  const isAdmin = user?.publicMetadata?.role === "admin"; 
+  const isAdmin = user?.publicMetadata?.role === "admin";
 
   return (
-    <Card className="p-4 rounded-lg shadow border bg-white">
+    <Card className="p-4 group rounded-lg shadow border bg-white">
       <CardHeader className="flex justify-between flex-row">
         <div className="flex items-center gap-3">
           <Image
@@ -57,7 +48,7 @@ export default function JobCard({
             className="rounded-lg"
           />
           <div>
-            <Link href={`/jobs/${id}`} className="text-lg font-semibold">{title}</Link>
+            <Link href={`/jobs/${id}`} className="text-lg font-semibold group-hover:underline underline-offset-2">{title}</Link>
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 mt-1">
               <span className="whitespace-nowrap">{location}</span>
               <span className="whitespace-nowrap">{salaryRange}</span>
@@ -91,13 +82,13 @@ export default function JobCard({
 
       <CardFooter className="mt-4 flex justify-between items-center">
         <div className="flex gap-2">
-          {skills.map((skill, index) => (
-            <Badge key={index} variant="outline" className={`text-sm px-3 py-1 font-medium rounded-md text-white ${colors[index]}`}>
+          {skills?.map((skill, index) => (
+            <Badge key={index} variant="outline" className={`text-sm px-3 py-1 font-medium rounded-md text-black bg-muted`}>
               {skill}
             </Badge>
           ))}
         </div>
-        <p className="text-xs text-gray-500">{postedTime}</p>
+        <p className="text-xs text-gray-500">{formatDistanceToNow(new Date(postedDate), { addSuffix: true })}</p>
       </CardFooter>
     </Card>
   );

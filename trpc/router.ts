@@ -68,11 +68,12 @@ export const appRouter = t.router({
           location: z.string().optional(),
           jobType: z.array(z.enum(["FULL_TIME", "PART_TIME", "REMOTE"])).optional(), // ✅ Accept array
           experience: z.enum(["ENTRY", "INTERMEDIATE", "EXPERT"]).optional(),
+          skills: z.array(z.string()).optional(),
           salary: z.number().optional(),
         })
       )
       .query(async ({ ctx, input }) => {
-        const { page, limit, search, location, jobType, experience } = input;
+        const { page, limit, search, location, jobType, experience, skills } = input;
         const skip = (page - 1) * limit;
 
         const whereFilter: any = {};
@@ -89,7 +90,9 @@ export const appRouter = t.router({
           whereFilter.type = { in: jobType }; // ✅ Allow multiple job types
         }
         if (experience) whereFilter.experience = experience;
-
+        if (skills && skills.length > 0) {
+          whereFilter.skills = { hasSome: skills };
+        }
         const jobs = await ctx.prisma.job.findMany({
           where: whereFilter,
           skip,

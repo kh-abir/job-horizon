@@ -16,6 +16,7 @@ model Job {
   description     String   @db.Text
   responsibilities String[]
   requirements    String[]
+  skills         String[]
   salary          String?
   applicationUrl  String?
   postedDate      DateTime @default(now())
