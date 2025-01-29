@@ -1,7 +1,7 @@
 "use client";
 
 import JobDetails from "@/components/JobDetails";
-import { trpc } from "@/lib/trpc/client";
+import { trpc } from "@/trpc/client";
 import Loading from "@/components/Loading";
 import { useParams } from "next/navigation";
 

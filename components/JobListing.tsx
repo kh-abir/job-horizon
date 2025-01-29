@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import { trpc } from "@/lib/trpc/client";
+import { trpc } from "@/trpc/client";
 import JobCard from "@/components/JobCard";
 import Loading from "@/components/Loading";
 import SearchBar from "@/components/SearchBar";
