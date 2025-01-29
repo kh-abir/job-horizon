@@ -17,6 +17,7 @@ const jobSchema = z.object({
   company: z.string().min(2, 'Company name is required'),
   location: z.string().min(2, 'Location is required'),
   type: z.enum(['FULL_TIME', 'PART_TIME', 'REMOTE', 'CONTRACT']),
+  skills: z.array(z.string()).optional(),
   description: z.string().min(10, 'Description must be at least 10 characters'),
   responsibilities: z.string().min(5, 'Responsibilities required'),
   requirements: z.string().min(5, 'Requirements required'),
@@ -65,6 +66,7 @@ export default function JobForm({ jobId }: JobFormProps) {
         location: existingJob.location,
         type: existingJob.type,
         description: existingJob.description,
+        skills: existingJob.skills || [],
         responsibilities: existingJob.responsibilities.join('\n'),
         requirements: existingJob.requirements.join('\n'),
         salary: existingJob.salary || '',
@@ -78,6 +80,7 @@ export default function JobForm({ jobId }: JobFormProps) {
       ...data,
       responsibilities: data.responsibilities.split('\n'),
       requirements: data.requirements.split('\n'),
+      skills: data.skills.split('\n'),
     };
 
     if (jobId) {
@@ -124,6 +127,9 @@ export default function JobForm({ jobId }: JobFormProps) {
 
         <Textarea placeholder="Requirements (one per line)" {...register('requirements')} />
         {errors.requirements && <p className="text-red-500 text-sm">{errors.requirements.message}</p>}
+
+        <Textarea placeholder="Skills (one per line)" {...register('skills')} />
+        {errors.skills && <p className="text-red-500 text-sm">{errors.skills.message}</p>}
 
         <Input placeholder="Salary (Optional)" {...register('salary')} />
         

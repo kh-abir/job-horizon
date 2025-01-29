@@ -10,7 +10,6 @@ enum JobType {
     FULL_TIME = "FULL_TIME",
     PART_TIME = "PART_TIME",
     REMOTE = "REMOTE",
-    CONTRACT = "CONTRACT",
 }
 
 const jobTypes: JobType[] = Object.values(JobType);
@@ -82,7 +81,7 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
     };
 
     return (
-        <div className="col-span-1 p-4 shadow rounded-lg bg-white">
+        <div className="col-span-1 xl:sticky top-5 p-6 shadow rounded-lg bg-white">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold">Filter</h2>
                 {/* Clear Filters */}
@@ -102,7 +101,7 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
             </div>
 
             {/* ✅ Location Filter */}
-            <label className="block mb-2 font-bold">Location</label>
+            <label className="block mb-4 font-bold">Location</label>
             <CountrySelect
                 placeholder={filters.location}
                 className="w-full p-2 border rounded-md"
@@ -111,9 +110,9 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
 
             {/* ✅ Job Type Filter */}
             <div className="mt-4">
-                <h3 className="mb-2 font-bold">Job Type</h3>
+                <h3 className="mb-4 font-bold">Job Type</h3>
                 {jobTypes.map((type) => (
-                    <label key={type} className="flex items-center space-x-2 text-gray-400">
+                    <label key={type} className="flex items-center space-x-3 mb-2 text-muted-foreground text-sm">
                         <Checkbox checked={filters.jobType.includes(type)} onCheckedChange={() => toggleJobType(type)} />
                         <span>{type.toLowerCase()
                             .replace(/_/g, " ")
@@ -124,9 +123,9 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
 
             {/* ✅ Experience Level Filter */}
             <div className="mt-4">
-                <h3 className="font-bold mb-2">Experience Levels</h3>
+                <h3 className="font-bold mb-4">Experience Levels</h3>
                 {experienceLevels.map((level) => (
-                    <label key={level} className="flex items-center space-x-2 text-gray-400">
+                    <label key={level} className="flex items-center space-x-3 mb-2 text-muted-foreground text-sm">
                         <Checkbox checked={filters.experience === level} onCheckedChange={() => toggleExperienceLevel(level)} />
                         <span>{level.toLowerCase()
                             .replace(/_/g, " ")
@@ -137,8 +136,8 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
 
             {/* ✅ Salary Range Filter */}
             <div className="mt-4">
-                <label className="block mb-2 font-bold">Expected Salary</label>
-                <p className="text-gray-600 text-sm mb-2">
+                <label className="block mb-4 font-bold">Expected Salary</label>
+                <p className="text-gray-600 text-sm mb-4">
                     Salary Range: <strong>${salaryRange[0]}</strong> - <strong>${salaryRange[1]}</strong>/mo
                 </p>
                 <Slider
