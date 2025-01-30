@@ -138,11 +138,11 @@ export default function JobForm({ jobId }: JobFormProps) {
         {errors.applicationUrl && <p className="text-red-500 text-sm">{errors.applicationUrl.message}</p>}
 
         <div className="flex space-x-4">
-          <Button type="submit" disabled={isSubmitting} className="w-1/2">
-            {isSubmitting ? 'Submitting...' : jobId ? 'Update Job' : 'Create Job'}
-          </Button>
           <Button type="button" variant="outline" onClick={() => router.push('/admin')} className="w-1/2 bg-gray-500 text-white">
             Cancel
+          </Button>
+          <Button type="submit" disabled={isSubmitting} className="w-1/2">
+            {isSubmitting ? 'Submitting...' : jobId ? 'Update Job' : 'Create Job'}
           </Button>
         </div>
       </form>
