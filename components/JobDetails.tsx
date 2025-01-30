@@ -43,9 +43,9 @@ export default function JobDetails({
   };
 
   return (
-    <main className="text-gray-900 w-[60%] m-auto mt-2">
+    <main className="rounded-[30px] text-white bg-background w-[60%] m-auto mt-2">
       <div
-        className="relative rounded-[30px] bg-green-100 px-6 py-8 md:px-10 md:py-10
+        className="relative rounded-[30px] bg-primary px-6 py-8 md:px-10 md:py-10
         "
       >
 
@@ -55,7 +55,7 @@ export default function JobDetails({
           {applicationUrl && (
             <Button
               asChild
-              className="bg-green-600 hover:bg-green-700 rounded-full"
+              className="bg-white font-bold text-black hover:bg-black hover:text-white transition-colors rounded-full"
               size="lg"
             >
               <a
@@ -74,39 +74,39 @@ export default function JobDetails({
         
         <div className="col-span-1 space-y-6">
         <div className="flex items-center gap-2">
-            <MapPin className="h-5 w-5 text-green-500" />
+            <MapPin className="h-5 w-5 text-primary" />
             <span className="text-sm text-gray-700">{location}</span>
         </div>
 
         <div className="flex items-center gap-2">
-            <Clock className="h-5 w-5 text-green-500" />
+            <Clock className="h-5 w-5 text-primary" />
             <span className="text-sm text-gray-700">{formatJobType(type)}</span>
         </div>
 
         <div className="flex items-center gap-2">
-            <Building2 className="h-5 w-5 text-green-500" />
+            <Building2 className="h-5 w-5 text-primary" />
             <span className="text-sm text-gray-700">On-site</span>
         </div>
         </div>
 
         <div className="col-span-2 space-y-8">
           <section>
-            <h2 className="mb-2 text-xl font-semibold">Company overview</h2>
-            <p className="leading-7 text-gray-700">
+            <h2 className="mb-2 text-xl font-semibold  text-gray-700">Company overview</h2>
+            <p className="leading-7 text-gray-500">
               {company} is committed to providing a seamless and stress-free
               experience for our clients. By leveraging advanced technology...
             </p>
           </section>
 
           <section>
-            <h2 className="mb-2 text-xl font-semibold">About the role</h2>
-            <p className="leading-7 text-gray-700">{description}</p>
+            <h2 className="mb-2 text-xl font-semibold   text-gray-700">About the role</h2>
+            <p className="leading-7 text-gray-500">{description}</p>
           </section>
 
           {responsibilities.length > 0 && (
             <section>
-              <h2 className="mb-2 text-xl font-semibold">What you&apos;ll do</h2>
-              <ul className="ml-4 list-disc space-y-2 text-gray-700">
+              <h2 className="mb-2 text-xl font-semibold text-gray-700">What you&apos;ll do</h2>
+              <ul className="ml-4 list-disc space-y-2 text-gray-500">
                 {responsibilities.map((resp, idx) => (
                   <li key={idx}>{resp}</li>
                 ))}
@@ -116,8 +116,8 @@ export default function JobDetails({
 
           {requirements.length > 0 && (
             <section>
-              <h2 className="mb-2 text-xl font-semibold">Requirements</h2>
-              <ul className="ml-4 list-disc space-y-2 text-gray-700">
+              <h2 className="mb-2 text-xl font-semibold text-gray-700">Requirements</h2>
+              <ul className="ml-4 list-disc space-y-2 text-gray-500">
                 {requirements.map((req, idx) => (
                   <li key={idx}>{req}</li>
                 ))}

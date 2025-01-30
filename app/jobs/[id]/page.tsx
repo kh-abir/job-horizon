@@ -18,7 +18,7 @@ export default function JobDetailsPage() {
   if (isLoading) {
     return (
       <div className="flex h-[80vh] flex-col items-center justify-center space-y-4">
-        <Loader2 className="h-6 w-6 animate-spin text-purple-600" />
+        <Loader2 className="h-6 w-6 animate-spin text-primary" />
         <p>Loading job details...</p>
       </div>
     );
