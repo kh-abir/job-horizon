@@ -51,7 +51,7 @@ export default function JobListing() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {/* ✅ Column 1: Sidebar */}
-      <div className="col-span-1">
+      <div className="col-span-2 md:col-span-1">
         <JobFilterSidebar filters={filters} setFilters={setFilters} />
       </div>
 
@@ -85,14 +85,14 @@ export default function JobListing() {
 
         {/* Pagination */}
         <div className="flex items-center justify-center space-x-4 py-6">
-            <Button onClick={() => setPage((prev) => Math.max(prev - 1, 1))} disabled={page === 1}>
-              <ChevronLeft />
-            </Button>
-            <span>Page {page} of {totalPages}</span>
-            <Button onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))} disabled={page >= totalPages}>
-              <ChevronRight />
-            </Button>
-          </div>
+          <Button onClick={() => setPage((prev) => Math.max(prev - 1, 1))} disabled={page === 1}>
+            <ChevronLeft />
+          </Button>
+          <span>Page {page} of {totalPages}</span>
+          <Button onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))} disabled={page >= totalPages}>
+            <ChevronRight />
+          </Button>
+        </div>
       </div>
     </div>
   );
