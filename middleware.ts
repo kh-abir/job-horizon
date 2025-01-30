@@ -18,13 +18,10 @@ export default clerkMiddleware(async (auth, req) => {
         try {
             // Fetch user data from Clerk API
             const client = await clerkClient()
-            const user = await  client.users.getUser(userId);
-            console.log("Fetched User:", user);
+            const user = await client.users.getUser(userId);
 
             // Retrieve role from publicMetadata
             const userRole = user?.publicMetadata?.role || 'user'; // Default to "user" if not set
-
-            console.log(`User Role: ${userRole}`);
 
             // Restrict admin routes to only "admin" users
             if (isAdminRoute(req) && userRole !== 'admin') {
@@ -36,7 +33,6 @@ export default clerkMiddleware(async (auth, req) => {
             }
 
         } catch (error) {
-            console.error('Error fetching user from Clerk:', error);
             return redirectToSignIn();
         }
     }
