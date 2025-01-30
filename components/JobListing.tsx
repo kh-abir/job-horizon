@@ -50,17 +50,13 @@ export default function JobListing() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {/* ✅ Column 1: Sidebar */}
       <div className="col-span-2 md:col-span-1">
         <JobFilterSidebar filters={filters} setFilters={setFilters} />
       </div>
 
-      {/* ✅ Column 2: Search Bar & Job Listings */}
       <div className="col-span-2 space-y-6">
-        {/* Search Bar */}
         <SearchBar setSearch={setSearch} search={search} />
 
-        {/* Job Listings */}
         <div className="space-y-4">
           { isLoading ? (<Loading/>) : jobs.length === 0 ? (
             <p className="text-center text-gray-500">No jobs available.</p>

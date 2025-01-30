@@ -4,7 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { trpc } from "@/trpc/client";
 import JobDetails from "@/components/JobDetails";
 import { JobType } from '@/trpc/constants';
-import { Loader2 } from "lucide-react"; // shadcn recommended loader icon
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function JobDetailsPage() {
@@ -35,7 +35,6 @@ export default function JobDetailsPage() {
     );
   }
 
-  // Destructure the fields from your DB
   const {
     id,
     title,

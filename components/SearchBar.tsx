@@ -5,10 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
-/** ✅ Define debounce delay time */
 const DEBOUNCE_DELAY = 500;
 
-/** ✅ Define props interface */
 interface SearchBarProps {
     search: string;
     setSearch: (query: string) => void;
@@ -17,7 +15,6 @@ interface SearchBarProps {
 export default function SearchBar({ search, setSearch }: SearchBarProps) {
     const [query, setQuery] = useState(search);
 
-    /** ✅ Apply debouncing effect */
     useEffect(() => {
         const handler = setTimeout(() => {
             if (query !== search) {
@@ -26,7 +23,7 @@ export default function SearchBar({ search, setSearch }: SearchBarProps) {
         }, DEBOUNCE_DELAY);
 
         return () => clearTimeout(handler);
-    }, [query]); // ✅ Only updates when user types
+    }, [query]); 
 
     return (
         <div className="bg-primary text-white p-6 rounded-lg shadow">
@@ -38,7 +35,7 @@ export default function SearchBar({ search, setSearch }: SearchBarProps) {
                 <Input
                     type="text"
                     placeholder="Search your dream job here"
-                    value={query} // ✅ Local input state
+                    value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     className="p-3 flex-1 border-none focus-visible:ring-0 focus-visible:ring-offset-0 text-white bg-white/10 placeholder:text-white"
                 />
