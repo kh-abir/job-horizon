@@ -12,7 +12,6 @@ import {ChevronLeft, ChevronRight} from "lucide-react";
 import { JobType } from '@/trpc/constants';
 
 export default function JobListing() {
-  const { user } = useUser();
   const [page, setPage] = useState(1);
   const limit = 5;
   const [search, setSearch] = useState("");
@@ -67,6 +66,7 @@ export default function JobListing() {
           { isLoading ? (<Loading/>) : jobs.length === 0 ? (
             <p className="text-center text-gray-500">No jobs available.</p>
           ) : (
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             jobs.map((job: any) => (
               <JobCard
                 key={job.id}

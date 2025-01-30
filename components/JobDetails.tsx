@@ -17,7 +17,6 @@ interface JobDetailsProps {
 }
 
 export default function JobDetails({
-  id,
   title,
   company,
   location,

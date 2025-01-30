@@ -6,7 +6,7 @@ import {
     SelectValue,
   } from "@/components/ui/select";
   import { filterCountries } from "@/lib/helpers";
-  //@ts-ignore
+  //@ts-expect-error
   import countryRegionData from "country-region-data/dist/data-umd";
   import { useEffect, useState } from "react";
   
