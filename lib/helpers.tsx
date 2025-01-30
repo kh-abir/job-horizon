@@ -15,7 +15,8 @@ export interface Region {
     whitelist: string[],
     blacklist: string[],
   ): CountryRegion[] => {
-    let countriesListedFirst: any[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const countriesListedFirst: any[] = [];
     let filteredCountries = countries;
   
     if (whitelist.length > 0) {
@@ -56,7 +57,8 @@ export interface Region {
     whitelist: string[],
     blacklist: string[],
   ) => {
-    let regionsListedFirst: any[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const regionsListedFirst: any[] = [];
     let filteredRegions = regions;
   
     if (whitelist.length > 0) {
