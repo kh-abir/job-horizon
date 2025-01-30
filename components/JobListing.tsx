@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import { useUser } from "@clerk/nextjs";
 import { trpc } from "@/trpc/client";
 import JobCard from "@/components/JobCard";
 import Loading from "@/components/Loading";
