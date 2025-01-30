@@ -38,8 +38,8 @@ export default function JobCard({
 
   return (
     <Card className="p-4 group rounded-lg shadow border bg-white">
-      <CardHeader className="flex justify-between flex-row">
-        <div className="flex items-center gap-3">
+      <CardHeader className="flex justify-between flex-row p-0 md:p-6">
+        <div className="flex items-start gap-3">
           <Image
             src={companyLogo || "https://picsum.photos/50"}
             alt={title}
@@ -76,12 +76,12 @@ export default function JobCard({
         )}
       </CardHeader>
 
-      <CardContent className="mt-2">
+      <CardContent className="mt-2 p-0 md:p-6 py-6">
         <p className="text-sm text-gray-500">{description.substring(0, 120)}...</p>
       </CardContent>
 
-      <CardFooter className="mt-4 flex justify-between items-center">
-        <div className="flex gap-2">
+      <CardFooter className="mt-4 flex justify-between items-start p-0 md:p-6">
+        <div className="flex flex-wrap gap-2">
           {skills?.map((skill, index) => (
             <Badge key={index} variant="outline" className={`text-sm px-3 py-1 font-medium rounded-md text-black bg-muted`}>
               {skill}

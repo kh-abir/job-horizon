@@ -13,7 +13,7 @@ export default function AdminPage() {
       </SignedOut>
       <SignedIn>
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+          <h1 className="text-xl md:text-2xl font-bold">Admin Dashboard</h1>
           <Link href="/admin/create-job">
             <Button>Create Job</Button>
           </Link>

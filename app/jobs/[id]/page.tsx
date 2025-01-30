@@ -42,7 +42,9 @@ export default function JobDetailsPage() {
     company,
     location,
     type,
+    salary,
     description,
+      skills,
     responsibilities,
     requirements,
     applicationUrl,
@@ -52,7 +54,9 @@ export default function JobDetailsPage() {
     company: string;
     location: string;
     type: JobType;
+    salary: string;
     description: string;
+    skills: string[];
     responsibilities: string[];
     requirements: string[];
     applicationUrl: string | null;
@@ -65,7 +69,9 @@ export default function JobDetailsPage() {
       company={company}
       location={location}
       type={type}
+      salaryRange={salary ? `${salary}/mo` : "Salary not listed"}
       description={description}
+      skills={skills}
       responsibilities={responsibilities}
       requirements={requirements}
       applicationUrl={applicationUrl}
