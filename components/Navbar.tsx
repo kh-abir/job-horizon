@@ -1,10 +1,14 @@
-import {SignedIn, SignedOut, SignInButton, UserButton} from "@clerk/nextjs";
+"use client"
+import {SignedIn, SignedOut, SignInButton, UserButton, useUser} from "@clerk/nextjs";
 import {Button} from "@/components/ui/button";
 import {Sheet, SheetContent, SheetTitle, SheetTrigger} from "@/components/ui/sheet";
 import Link from "next/link";
-import { JSX, SVGProps } from "react";
+import {JSX, SVGProps} from "react";
+import {Bell, Mail} from "lucide-react";
 
-const page = () => {
+const Navbar = () => {
+    const {user} = useUser()
+
     return (
         <section className={" "}>
             <header
@@ -42,7 +46,14 @@ const page = () => {
                                 className="flex w-full items-center py-2 text-lg font-semibold"
                                 prefetch={false}
                             >
-                                Option 2
+                                Option 3
+                            </Link>
+                            <Link
+                                href="#"
+                                className="flex w-full items-center py-2 text-lg font-semibold"
+                                prefetch={false}
+                            >
+                                Option 4
                             </Link>
                         </div>
 
@@ -56,9 +67,10 @@ const page = () => {
                 <nav className="hidden lg:flex gap-6">
                     <Link
                         href="#"
-                        className="group inline-flex text-gray-600 h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
+                        className="group inline-flex text-gray-400 font-semibold h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
              hover:border-b-2 hover:border-black hover:text-gray-900
-             focus:border-b-2 focus:border-black focus:bg-gray-100 focus:text-gray-900 focus:font-semibold focus:outline-none
+             focus:border-b-2 focus:border-black focus:text-gray-900 focus:font-semibold focus:outline-none
+             acive:border-b-2 acive:border-black acive:text-gray-900 acive:font-semibold acive:outline-none
              disabled:pointer-events-none disabled:opacity-50
              data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50
              dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50
@@ -70,9 +82,10 @@ const page = () => {
                     </Link>
                     <Link
                         href="#"
-                        className="group inline-flex text-gray-600 h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
+                        className="group inline-flex text-gray-400 font-semibold h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
              hover:border-b-2 hover:border-black hover:text-gray-900
-             focus:border-b-2 focus:border-black focus:bg-gray-100 focus:text-gray-900 focus:font-semibold focus:outline-none
+             focus:border-b-2 focus:border-black focus:text-gray-900 focus:font-semibold focus:outline-none
+             acive:border-b-2 acive:border-black acive:text-gray-900 acive:font-semibold acive:outline-none
              disabled:pointer-events-none disabled:opacity-50
              data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50
              dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50
@@ -84,9 +97,10 @@ const page = () => {
                     </Link>
                     <Link
                         href="#"
-                        className="group inline-flex text-gray-600 h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
+                        className="group inline-flex text-gray-400 font-semibold h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
              hover:border-b-2 hover:border-black hover:text-gray-900
-             focus:border-b-2 focus:border-black focus:bg-gray-100 focus:text-gray-900 focus:font-semibold focus:outline-none
+             focus:border-b-2 focus:border-black focus:text-gray-900 focus:font-semibold focus:outline-none
+             acive:border-b-2 acive:border-black acive:text-gray-900 acive:font-semibold acive:outline-none
              disabled:pointer-events-none disabled:opacity-50
              data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50
              dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50
@@ -96,12 +110,38 @@ const page = () => {
                     >
                         Option 3
                     </Link>
+                    <Link
+                        href="#"
+                        className="group inline-flex text-gray-400 font-semibold h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
+             hover:border-b-2 hover:border-black hover:text-gray-900
+             focus:border-b-2 focus:border-black focus:text-gray-900 focus:font-semibold focus:outline-none
+             acive:border-b-2 acive:border-black acive:text-gray-900 acive:font-semibold acive:outline-none
+             disabled:pointer-events-none disabled:opacity-50
+             data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50
+             dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50
+             dark:focus:bg-gray-800 dark:focus:text-gray-50
+             dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+
+                    >
+                        Option 4
+                    </Link>
                 </nav>
                 <div className="flex items-center gap-6">
+                    {
+                        user && (
+                            <div className="flex items-center gap-6">
+                                <Mail className={"text-gray-400 hover:text-black cursor-pointer"}/>
+                                <Bell className={"text-gray-400 hover:text-black cursor-pointer"}/>
+                            </div>
+
+                        )
+                    }
+
                     <div>
                         <SignedOut>
                             <SignInButton>
-                                <Button className={"bg-black text-white hover:bg-gray-900 hover:text-white"}>Sign In</Button>
+                                <Button className={"bg-black text-white hover:bg-gray-900 hover:text-white"}>Sign
+                                    In</Button>
                             </SignInButton>
                         </SignedOut>
                         <SignedIn>
@@ -154,4 +194,4 @@ function MountainIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) 
     );
 }
 
-export default page;
+export default Navbar;
