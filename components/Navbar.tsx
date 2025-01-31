@@ -57,8 +57,8 @@ const page = () => {
                     <Link
                         href="#"
                         className="group inline-flex text-gray-600 h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
-             hover:border-b-2 hover:border-orange-400 hover:text-gray-900
-             focus:border-b-2 focus:border-orange-400 focus:bg-gray-100 focus:text-gray-900 focus:font-semibold focus:outline-none
+             hover:border-b-2 hover:border-black hover:text-gray-900
+             focus:border-b-2 focus:border-black focus:bg-gray-100 focus:text-gray-900 focus:font-semibold focus:outline-none
              disabled:pointer-events-none disabled:opacity-50
              data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50
              dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50
@@ -71,8 +71,8 @@ const page = () => {
                     <Link
                         href="#"
                         className="group inline-flex text-gray-600 h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
-             hover:border-b-2 hover:border-orange-400 hover:text-gray-900
-             focus:border-b-2 focus:border-orange-400 focus:bg-gray-100 focus:text-gray-900 focus:font-semibold focus:outline-none
+             hover:border-b-2 hover:border-black hover:text-gray-900
+             focus:border-b-2 focus:border-black focus:bg-gray-100 focus:text-gray-900 focus:font-semibold focus:outline-none
              disabled:pointer-events-none disabled:opacity-50
              data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50
              dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50
@@ -85,8 +85,8 @@ const page = () => {
                     <Link
                         href="#"
                         className="group inline-flex text-gray-600 h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
-             hover:border-b-2 hover:border-orange-400 hover:text-gray-900
-             focus:border-b-2 focus:border-orange-400 focus:bg-gray-100 focus:text-gray-900 focus:font-semibold focus:outline-none
+             hover:border-b-2 hover:border-black hover:text-gray-900
+             focus:border-b-2 focus:border-black focus:bg-gray-100 focus:text-gray-900 focus:font-semibold focus:outline-none
              disabled:pointer-events-none disabled:opacity-50
              data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50
              dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50
@@ -101,7 +101,7 @@ const page = () => {
                     <div>
                         <SignedOut>
                             <SignInButton>
-                                <Button varient={"secondary"}>Sign In</Button>
+                                <Button className={"bg-black text-white hover:bg-gray-900 hover:text-white"}>Sign In</Button>
                             </SignInButton>
                         </SignedOut>
                         <SignedIn>
