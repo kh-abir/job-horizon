@@ -48,7 +48,8 @@ export const jobsRouter = {
       let jobs = await ctx.prisma.job.findMany({
           where: whereFilter,
           skip,
-          take: limit,
+          // take: limit,
+          orderBy: { postedDate: 'desc' },
       });
 
       // 💰 Salary Filtering (since salary is stored as a string)

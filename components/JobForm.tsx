@@ -95,7 +95,7 @@ export default function JobForm({ jobId }: JobFormProps) {
   if (isLoading && jobId) return <p>Loading job data...</p>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md">
+    <div className="max-w-3xl mx-auto p-6 my-20 bg-white shadow-md rounded-md">
       <h1 className="text-2xl font-bold mb-4">{jobId ? 'Edit Job' : 'Create Job'}</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         
