@@ -1,5 +1,4 @@
-// lib/trpc/router.ts
-import t from './trpc'; // ✅ Import TRPC core
+import t from './trpc'; 
 import { jobsRouter } from './routers/jobsRouter';
 
 export const appRouter = t.router({

@@ -130,20 +130,20 @@ export default function JobForm({ jobId }: JobFormProps) {
         <Textarea placeholder="Requirements (one per line)" {...register('requirements')} />
         {errors.requirements && <p className="text-red-500 text-sm">{errors.requirements.message}</p>}
 
-        <Textarea placeholder="Skills (one per line)" {...register('skills')} />
-        {errors.skills && <p className="text-red-500 text-sm">{errors.skills.message}</p>}
+        {/* <Textarea placeholder="Skills (one per line)" {...register('skills')} /> */}
+        {/* {errors.skills && <p className="text-red-500 text-sm">{errors.skills.message}</p>} */}
 
-        <Input placeholder="Salary (Optional)" {...register('salary')} />
+        <Input placeholder="Salary/mo (Optional)" {...register('salary')} />
         
         <Input placeholder="Application URL (Optional)" {...register('applicationUrl')} />
         {errors.applicationUrl && <p className="text-red-500 text-sm">{errors.applicationUrl.message}</p>}
 
         <div className="flex space-x-4">
-          <Button type="submit" disabled={isSubmitting} className="w-1/2">
-            {isSubmitting ? 'Submitting...' : jobId ? 'Update Job' : 'Create Job'}
-          </Button>
           <Button type="button" variant="outline" onClick={() => router.push('/admin')} className="w-1/2 bg-gray-500 text-white">
             Cancel
+          </Button>
+          <Button type="submit" disabled={isSubmitting} className="w-1/2">
+            {isSubmitting ? 'Submitting...' : jobId ? 'Update Job' : 'Create Job'}
           </Button>
         </div>
       </form>

@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Simple Job Board
 
-## Getting Started
+A Simple job board application built with Next.js 15, leveraging the power of tRPC, Prisma, PostgreSQL and Clerk for authentication. This full-stack application demonstrates implementation of type-safe APIs, database operations, and secure user management.
 
-First, run the development server:
+## Technology Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Framework**: Next.js 15 with App Router
+- **API Layer**: tRPC for end-to-end type safety
+- **Database**: PostgreSQL
+- **Database ORM**: Prisma
+- **Authentication**: Clerk
+- **Type Safety**: TypeScript
+- **Styling**: Tailwind CSS
+- **Form Validation**: Zod
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Job Listings Management**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  - Create, read, update, and delete job postings
+  - Advanced filtering and search capabilities
+  - Pagination support
+  - Role-based access control (Admin/Public)
 
-## Learn More
+- **Search & Filter Functionality**
 
-To learn more about Next.js, take a look at the following resources:
+  - Full-text search across job titles
+  - Filter by location, job type
+  - Salary-based filtering
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Admin Dashboard**
+  - Secure admin routes for job management
+  - Job posting creation and editing interface
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Application Routes
 
-## Deploy on Vercel
+## Public Routes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. `/`: Home page displaying featured job listings
+2. `/jobs`: Main job listings page with search and filters
+3. `/jobs/[id]`: Individual job details page
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Admin Routes (Protected)
+
+1. `/admin`: Admin dashboard
+2. `/admin/jobs`: Job management page
+3. `/admin/jobs/create`: Create new job listing
+4. `/admin/jobs/edit/[id]`: Edit existing job listing
+5. `/admin/jobs/[id]`: View job details with admin controls
+
+## API Structure
+
+The application implements five main API endpoints through tRPC routers:
+
+1. `getById`: Retrieve specific job details
+2. `getAll`: Fetch paginated job listings with filtering
+3. `create`: Add new job listings (admin only)
+4. `update`: Modify existing job postings (admin only)
+5. `delete`: Remove job listings (admin only)
+
+## Run Locally
+
+1. Clone the repository:
+
+   ```bash
+   git clone [repository-url]
+   cd job-horizon
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Set up PostgreSQL:
+
+   - Install PostgreSQL if not already installed
+   - Create a new PostgreSQL database
+   - Note down your database credentials
+
+4. Set up environment variables:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Configure the following variables:
+
+   - `DATABASE_URL`
+   - `CLERK_SECRET_KEY`
+   - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+
+5. Initialize the database:
+
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
+
+6. Run the development server:
+   ```bash
+   npm run dev
+   ```

@@ -30,7 +30,6 @@ export interface Region {
     }
   
     if (priorityCountries.length > 0) {
-      // ensure the countries are added in the order in which they are specified by the user
       priorityCountries.forEach((slug) => {
         const result = filteredCountries.find(
           ({ countryShortCode }) => countryShortCode === slug,
@@ -72,7 +71,6 @@ export interface Region {
     }
   
     if (priorityRegions.length > 0) {
-      // ensure the Regions are added in the order in which they are specified by the user
       priorityRegions.forEach((slug) => {
         const result = filteredRegions.find(
           ({ shortCode }) => shortCode === slug,

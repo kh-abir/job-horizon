@@ -1,5 +1,4 @@
-// lib/trpc/routers/jobsRouter.ts
-import { publicProcedure, adminProcedure } from '../trpc'; // ✅ Import from trpc.ts
+import { publicProcedure, adminProcedure } from '../trpc';
 import { z } from 'zod';
 import { jobInputSchema, JobType } from '../constants';
 

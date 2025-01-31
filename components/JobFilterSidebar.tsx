@@ -8,7 +8,6 @@ import { JobType } from '@/trpc/constants';
 
 const jobTypes: JobType[] = Object.values(JobType);
 
-/** ✅ Props Interface */
 interface JobFilterSidebarProps {
     filters: {
         location: string | undefined;
@@ -27,7 +26,6 @@ interface JobFilterSidebarProps {
 }
 
 export default function JobFilterSidebar({ filters, setFilters }: JobFilterSidebarProps) {
-    /** ✅ Toggle Job Type */
     const toggleJobType = (type: JobType) => {
         setFilters((prev) => ({
             ...prev,
@@ -37,7 +35,6 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
         }));
     };
 
-    /** ✅ Handle Country Change */
     const handleCountryChange = (country: string) => {
         setFilters((prev) => ({
             ...prev,
@@ -45,10 +42,8 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
         }));
     };
 
-    /** ✅ Salary Range State */
     const [salaryRange, setSalaryRange] = useState([5000, 20000]);
 
-    /** ✅ Handle Salary Range Change */
     const handleSalaryChange = (value: number[]) => {
         setSalaryRange(value);
         const salaryString = `$${value[0].toLocaleString()} - $${value[1].toLocaleString()}`;
@@ -63,7 +58,6 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
         <div className="col-span-1 xl:sticky top-5 p-6 shadow rounded-lg bg-white">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold">Filter</h2>
-                {/* Clear Filters */}
                 <p
                     className="text-red-500 text-xs cursor-pointer font-bold"
                     onClick={() =>
@@ -79,7 +73,6 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
                 </p>
             </div>
 
-            {/* ✅ Location Filter */}
             <label className="block mb-4 font-bold">Location</label>
             <CountrySelect
                 placeholder={filters.location}
@@ -87,7 +80,6 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
                 onChange={handleCountryChange}
             />
 
-            {/* ✅ Job Type Filter */}
             <div className="mt-4">
                 <h3 className="mb-4 font-bold">Job Type</h3>
                 {jobTypes.map((type) => (
@@ -100,7 +92,6 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
                 ))}
             </div>
 
-            {/* ✅ Salary Range Filter */}
             <div className="mt-4">
                 <label className="block mb-4 font-bold">Expected Salary</label>
                 <p className="text-gray-600 text-sm mb-4">
