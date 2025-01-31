@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { JobType } from '@/trpc/constants';
 import {useToast} from "@/hooks/use-toast";
+import CountrySelect from "@/components/CountrySelect";
 
 const jobSchema = z.object({
   id: z.string().optional(),
@@ -19,7 +20,7 @@ const jobSchema = z.object({
   company: z.string().min(2, 'Company name is required'),
   location: z.string().min(2, 'Location is required'),
   type: z.nativeEnum(JobType), 
-  skills: z.string().optional(),
+  skills: z.string().min(5, 'Skills required'),
   description: z.string().min(10, 'Description must be at least 10 characters'),
   responsibilities: z.string().min(5, 'Responsibilities required'),
   requirements: z.string().min(5, 'Requirements required'),
@@ -82,7 +83,7 @@ export default function JobForm({ jobId }: JobFormProps) {
       ...data,
       responsibilities: data.responsibilities.split('\n'),
       requirements: data.requirements.split('\n'),
-      skills: data.skills?.split('\n'),
+      skills: data.skills.split('\n'),
     };
 
     if (jobId) {
@@ -105,9 +106,6 @@ export default function JobForm({ jobId }: JobFormProps) {
         <Input placeholder="Company Name" {...register('company')} />
         {errors.company && <p className="text-red-500 text-sm">{errors.company.message}</p>}
 
-        <Input placeholder="Location" {...register('location')} />
-        {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
-
         <Select onValueChange={(value) => setValue('type', value as JobType)}>
           <SelectTrigger>
             <SelectValue placeholder="Select Job Type" />
@@ -121,6 +119,8 @@ export default function JobForm({ jobId }: JobFormProps) {
         </Select>
         {errors.type && <p className="text-red-500 text-sm">{errors.type.message}</p>}
 
+        <CountrySelect placeholder={"Country"} onChange={(value)=> setValue('location', value)}/>
+
         <Textarea placeholder="Job Description" {...register('description')} />
         {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
 
@@ -130,8 +130,8 @@ export default function JobForm({ jobId }: JobFormProps) {
         <Textarea placeholder="Requirements (one per line)" {...register('requirements')} />
         {errors.requirements && <p className="text-red-500 text-sm">{errors.requirements.message}</p>}
 
-        {/* <Textarea placeholder="Skills (one per line)" {...register('skills')} /> */}
-        {/* {errors.skills && <p className="text-red-500 text-sm">{errors.skills.message}</p>} */}
+         <Textarea placeholder="Skills (one per line)" {...register('skills')} />
+         {errors.skills && <p className="text-red-500 text-sm">{errors.skills.message}</p>}
 
         <Input placeholder="Salary/mo (Optional)" {...register('salary')} />
         

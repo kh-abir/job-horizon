@@ -15,13 +15,12 @@ export const jobsRouter = {
           search: z.string().optional(),
           location: z.string().optional(),
           jobType: z.array(z.nativeEnum(JobType)).optional(),
-          skills: z.array(z.string()).optional(),
           salary: z.string().optional(),
           postedDate: z.string().optional(),
       })
   )
   .query(async ({ ctx, input }) => {
-      const { page, limit, search, location, jobType, skills, salary } = input;
+      const { page, limit, search, location, jobType, salary } = input;
       const skip = (page - 1) * limit;
 
       const whereFilter: Record<string, any> = {};
@@ -40,15 +39,13 @@ export const jobsRouter = {
       // 🏢 Job Type Filter
       if (jobType?.length) whereFilter.type = { in: jobType };
 
-      // 🛠 Skills Filter
-      if (skills?.length) whereFilter.skills = { hasSome: skills };
       const totalJobs = await ctx.prisma.job.count({ where: whereFilter });
 
       // ✅ Fetch jobs from Prisma
       let jobs = await ctx.prisma.job.findMany({
           where: whereFilter,
           skip,
-          // take: limit,
+          take: limit,
           orderBy: { postedDate: 'desc' },
       });
 

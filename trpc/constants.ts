@@ -13,6 +13,7 @@ export const jobInputSchema = z.object({
   location: z.string(),
   type: z.nativeEnum(JobType),
   description: z.string(),
+  skills: z.array(z.string()),
   responsibilities: z.array(z.string()),
   requirements: z.array(z.string()),
   salary: z.string().optional(),
