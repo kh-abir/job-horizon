@@ -26,7 +26,7 @@ export default function SearchBar({ search, setSearch }: SearchBarProps) {
         }, DEBOUNCE_DELAY);
 
         return () => clearTimeout(handler);
-    }, [query]); // ✅ Only updates when user types
+    }, [query, search, setSearch]); // ✅ Only updates when user types
 
     return (
         <div className="bg-primary text-white p-6 rounded-lg shadow">

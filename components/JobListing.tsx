@@ -9,8 +9,10 @@ import JobFilterSidebar from "@/components/JobFilterSidebar";
 import { Button } from "@/components/ui/button";
 import {ChevronLeft, ChevronRight} from "lucide-react";
 import { JobType } from '@/trpc/constants';
+import {useToast} from "@/hooks/use-toast";
 
 export default function JobListing() {
+  const {toast} = useToast();
   const [page, setPage] = useState(1);
   const limit = 5;
   const [search, setSearch] = useState("");
@@ -18,7 +20,7 @@ export default function JobListing() {
   const [filters, setFilters] = useState({
     location: undefined as string | undefined,
     jobType: [] as JobType[],
-    salary: undefined as number | undefined,
+    salary: undefined as string | undefined,
     postedDate: undefined as string | undefined,
   });
 
@@ -45,6 +47,7 @@ export default function JobListing() {
   const handleDelete = (jobId: string) => {
     if (confirm("Are you sure you want to delete this job?")) {
       deleteMutation.mutate({ id: jobId });
+      toast({title: "Job deleted successfully"});
     }
   };
 

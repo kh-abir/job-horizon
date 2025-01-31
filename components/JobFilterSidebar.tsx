@@ -13,14 +13,14 @@ interface JobFilterSidebarProps {
     filters: {
         location: string | undefined;
         jobType: JobType[];
-        salary: number | undefined;
+        salary: string | undefined;
         postedDate: string | undefined;
     };
     setFilters: React.Dispatch<
         React.SetStateAction<{
             location: string | undefined;
             jobType: JobType[];
-            salary: number | undefined;
+            salary: string | undefined;
             postedDate: string | undefined;
         }>
     >;
@@ -51,9 +51,11 @@ export default function JobFilterSidebar({ filters, setFilters }: JobFilterSideb
     /** ✅ Handle Salary Range Change */
     const handleSalaryChange = (value: number[]) => {
         setSalaryRange(value);
+        const salaryString = `$${value[0].toLocaleString()} - $${value[1].toLocaleString()}`;
+
         setFilters((prev) => ({
             ...prev,
-            salary: value[0],
+            salary: salaryString,
         }));
     };
 

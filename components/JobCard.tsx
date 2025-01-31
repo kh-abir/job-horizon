@@ -48,7 +48,7 @@ export default function JobCard({
             className="rounded-lg"
           />
           <div>
-            <Link href={`/jobs/${id}`} className="text-lg font-semibold group-hover:underline underline-offset-2">{title}</Link>
+            <Link href={ isAdmin ? `/admin/jobs/${id}` : `/jobs/${id}`} className="text-lg font-semibold group-hover:underline underline-offset-2">{title}</Link>
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 mt-1">
               <span className="whitespace-nowrap">{location}</span>
               <span className="whitespace-nowrap">{salaryRange}</span>
@@ -66,7 +66,7 @@ export default function JobCard({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem asChild>
-                <Link href={`/admin/edit-job/${id}`}>Edit</Link>
+                <Link href={`/admin/jobs/edit/${id}`}>Edit</Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => onDelete(id)} className="text-red-600">
                 Delete

@@ -44,7 +44,7 @@ import {
       setCountries(
         filterCountries(countryRegionData, priorityOptions, whitelist, blacklist),
       );
-    }, []);
+    }, [blacklist, priorityOptions, whitelist]);
   
     return (
       <Select

@@ -7,6 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className='bg-muted'>
+      <Toaster />
         <ClerkProvider>
           <header className="p-4 border-b flex items-center justify-end bg-white">
             <div>

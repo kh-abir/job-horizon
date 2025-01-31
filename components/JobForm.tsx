@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { JobType } from '@/trpc/constants';
+import {useToast} from "@/hooks/use-toast";
 
 const jobSchema = z.object({
   id: z.string().optional(),
@@ -34,7 +35,7 @@ interface JobFormProps {
 
 export default function JobForm({ jobId }: JobFormProps) {
   const router = useRouter();
-
+  const {toast} = useToast()
   const { data: existingJob, isLoading } = trpc.jobs.getById.useQuery(
     { id: jobId! },
     { enabled: !!jobId }
@@ -46,14 +47,14 @@ export default function JobForm({ jobId }: JobFormProps) {
 
   const createMutation = trpc.jobs.create.useMutation({
     onSuccess: () => {
-      console.log('Job created successfully');
+      toast({title: 'Job created successfully'});
       router.push('/admin');
     },
   });
 
   const updateMutation = trpc.jobs.update.useMutation({
     onSuccess: () => {
-      console.log('Job updated successfully');
+      toast({title: 'Job updated successfully'});
       router.push('/admin');
     },
   });
