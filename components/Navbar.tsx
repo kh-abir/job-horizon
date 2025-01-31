@@ -8,7 +8,7 @@ import {Bell, Mail} from "lucide-react";
 
 const Navbar = () => {
     const {user} = useUser()
-
+    const pathname = "/option1"
     return (
         <section className={" "}>
             <header
@@ -66,17 +66,15 @@ const Navbar = () => {
                 </Link>
                 <nav className="hidden lg:flex gap-6">
                     <Link
-                        href="#"
-                        className="group inline-flex text-gray-400 font-semibold h-20 w-max items-center border-b-2 border-transparent justify-center bg-white px-4 py-2 text-sm transition-colors
-             hover:border-b-2 hover:border-black hover:text-gray-900
-             focus:border-b-2 focus:border-black focus:text-gray-900 focus:font-semibold focus:outline-none
-             acive:border-b-2 acive:border-black acive:text-gray-900 acive:font-semibold acive:outline-none
-             disabled:pointer-events-none disabled:opacity-50
-             data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50
-             dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50
-             dark:focus:bg-gray-800 dark:focus:text-gray-50
-             dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-
+                        href="#" // Set the correct href
+                        className={`group inline-flex text-gray-600 font-semibold h-20 w-max items-center border-b-2 justify-center bg-white px-4 py-2 text-sm transition-colors
+                ${pathname === "/option1"
+                            ? "border-black text-gray-900 font-semibold outline-none" // Active state
+                            : "border-transparent hover:border-black hover:text-gray-900"} 
+                focus:border-black focus:text-gray-900 focus:font-semibold focus:outline-none
+                disabled:pointer-events-none disabled:opacity-50
+                dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50
+                dark:focus:bg-gray-800 dark:focus:text-gray-50`}
                     >
                         Option 1
                     </Link>
